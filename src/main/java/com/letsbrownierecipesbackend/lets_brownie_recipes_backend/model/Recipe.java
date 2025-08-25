@@ -21,6 +21,9 @@ public class Recipe {
     @Column
     private List<String> instructions;
 
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
+
     private String image;
     private int cookTimeMinutes;
     private int caloriesPerServing;
@@ -110,5 +113,13 @@ public class Recipe {
 
     public void setReviewCount(int reviewCount) {
         this.reviewCount = reviewCount;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
